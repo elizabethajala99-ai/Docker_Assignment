@@ -1,86 +1,55 @@
-# Cloudboosta WordPress Docker Deployment
+# Docker Assignment - WordPress Deployment
 
-This project provides a containerized WordPress website deployment using Docker Compose for Cloudboosta, a professional cloud solutions company.
+A Docker Compose solution for deploying WordPress with a custom business theme for Cloudboosta, a cloud solutions company.
 
-## 🚀 Project Overview
+## 🚀 Quick Start
 
-**Assignment Context**: Deploy Cloudboosta's complete WordPress business website using Docker Compose.
+```bash
+# Clone the repository
+git clone https://github.com/elizabethajala99-ai/Docker_Assignment.git
+cd Docker_Assignment
 
-This Docker deployment includes:
-- **WordPress with Custom Cloudboosta Theme**: Complete business website integrated into WordPress CMS
-- **Apache Web Server**: Built into WordPress container for reliable hosting
-- **MySQL Database**: Backend for WordPress content and configuration
-- **phpMyAdmin**: Database management interface
-- **Persistent Storage**: Data volumes for all components
-- **Custom Network**: Isolated container communication
+# Start the deployment
+docker compose up -d
 
-## 🎯 **WordPress Integration**
+# Access the website
+# WordPress Site: http://localhost
+# Admin Panel: http://localhost/wp-admin (admin / cloudboosta2024!)
+```
 
-### **Cloudboosta Custom Theme**
-- **Professional Business Design**: Cloud solutions company branding
-- **WordPress CMS**: Full content management capabilities
-- **Services Portfolio**: AWS, Docker, DevOps, Security services
-- **Company Information**: About, contact, and business statistics
-- **Responsive Design**: Mobile-optimized layout
+## 📋 Services
 
-### **WordPress Features**
-- **Admin Panel**: http://localhost/wp-admin
-- **Login**: admin / cloudboosta2024!
-- **Custom Theme**: Cloudboosta business theme activated
-- **Content**: Pre-loaded company information and services
-- **Navigation**: Professional menu structure
+- **WordPress**: Content Management System with custom Cloudboosta theme
+- **MySQL**: Database backend for WordPress
+- **phpMyAdmin**: Database administration interface (port 8081)
 
-## 🌩️ **Deployment Strategy: AWS EC2 with User Data** ⭐ **Recommended**
+## 🎯 Features
 
-For Cloudboosta's business-critical website, we use **AWS EC2 with automated User Data setup**:
-- **Pre-built website** ready for deployment (representing completed development)
-- **Fully automated** EC2 instance configuration
-- **Docker and Docker Compose** installed automatically
-- **Security configured** (firewall, user permissions)
-- **Website live** in 5-10 minutes after launch
+- Custom WordPress theme with professional business design
+- Pre-configured Cloudboosta company content
+- Responsive layout optimized for cloud services business
+- Admin access for content management
+- Persistent data storage
 
 ## 📋 Prerequisites
 
-- Docker Engine 20.10 or later
-- Docker Compose 2.0 or later
-- At least 2GB free disk space
+- Docker Engine 20.10+
+- Docker Compose 2.0+
+- 2GB+ available disk space
 
-## 🛠️ Quick Start
+## � Configuration
 
-### **Step 1: Deploy WordPress**
+### Environment Variables
+Configuration is managed through `.env` file:
+- Database credentials
+- WordPress settings
+- Security configurations
 
-```bash
-# Clone repository
-git clone https://github.com/YOUR_USERNAME/cloudboosta-wordpress.git
-cd cloudboosta-wordpress
-
-# Start services
-docker-compose -f docker-compose-apache.yml up -d --build
-
-# Wait for initialization (1-2 minutes)
-# WordPress will auto-install with Cloudboosta content
-```
-
-### **Step 2: Access Your WordPress Site**
-
-- **Cloudboosta Website**: http://localhost ⭐ **WordPress with Custom Theme**
-- **WordPress Admin**: http://localhost/wp-admin
-  - **Username**: admin
-  - **Password**: cloudboosta2024!
-- **Database Admin**: http://localhost:8081 (phpMyAdmin)
-
-### **Step 3: Verify WordPress Setup**
-
-1. **Visit Homepage**: http://localhost
-   - ✅ See Cloudboosta branded WordPress site
-   - ✅ Professional cloud solutions content
-   - ✅ Services, about, contact sections
-
-2. **Check Admin Panel**: http://localhost/wp-admin
-   - ✅ Login with admin/cloudboosta2024!
-   - ✅ Cloudboosta theme activated
-   - ✅ Content pages created
-   - ✅ Navigation menu configured
+### Custom Theme
+The `wordpress-content/` directory contains:
+- Custom Cloudboosta business theme
+- Professional styling and layout
+- Pre-configured company content
 
 ## 🔧 Configuration Details
 
@@ -151,75 +120,41 @@ docker-compose up -d
 # Access at http://localhost:8080
 ```
 
-## 🔍 Monitoring and Troubleshooting
+## � Project Structure
 
-### Health Checks
-```bash
-# Check container status
-docker-compose ps
-
-# Monitor resource usage
-docker stats
-
-# Check container logs
-docker-compose logs [service-name]
+```
+Docker_Assignment/
+├── docker-compose.yml          # Main Docker Compose configuration
+├── docker-compose-apache.yml   # Alternative configuration file
+├── .env                        # Environment variables
+├── README.md                   # Project documentation
+├── Dockerfile.wordpress        # Custom WordPress build
+├── init-wordpress.sh          # WordPress initialization script
+├── uploads.ini                # PHP upload configuration
+├── apache/                    # Apache configuration files
+└── wordpress-content/         # Custom WordPress theme and content
+    └── themes/cloudboosta/    # Cloudboosta business theme
 ```
 
-### Common Issues
+## 🛠️ Management
 
-**Issue**: WordPress database connection error
 ```bash
-# Solution: Ensure database is ready
-docker-compose restart wordpress
+# Start services
+docker compose up -d
+
+# Stop services  
+docker compose down
+
+# View logs
+docker compose logs -f
+
+# Check status
+docker compose ps
 ```
 
-**Issue**: Permission denied errors
-```bash
-# Solution: Fix WordPress permissions
-docker-compose exec wordpress chown -R www-data:www-data /var/www/html
-```
+## 📋 Assignment Details
 
-## 🚀 Production Considerations
-
-### Security Enhancements
-1. **Strong Passwords**: Use complex, unique passwords
-2. **SSL/TLS**: Implement HTTPS with reverse proxy (nginx/Traefik)
-3. **Firewall**: Restrict port access
-4. **Updates**: Regular security updates
-
-### Performance Optimization
-1. **Caching**: Add Redis or Memcached
-2. **CDN**: Implement content delivery network
-3. **Database**: Optimize MySQL configuration
-4. **Monitoring**: Add Prometheus/Grafana stack
-
-### Backup Strategy
-1. **Database**: Automated MySQL dumps
-2. **Files**: WordPress uploads backup
-3. **Configuration**: Version control for compose files
-
-## 👥 Development Workflow
-
-### For Team Collaboration
-1. Each developer runs `docker-compose up -d`
-2. Identical environment across all machines
-3. No OS compatibility concerns
-4. Shared configuration via version control
-
-### Making Changes
-1. Update `docker-compose.yml` for infrastructure changes
-2. Modify `.env` for configuration updates
-3. Use volumes for persistent development data
-4. Test changes in isolated container environment
-
-## 📞 Support
-
-For technical issues or questions:
-1. Check container logs: `docker-compose logs`
-2. Verify service status: `docker-compose ps`
-3. Review documentation above
-4. Contact DevOps team for advanced troubleshooting
-
----
-
-**Note**: This deployment is optimized for development and testing. For production use, implement additional security measures, monitoring, and backup strategies as outlined in the production considerations section.
+**Student**: Elizabeth Ajala  
+**Repository**: https://github.com/elizabethajala99-ai/Docker_Assignment  
+**Deployment**: WordPress with Docker Compose  
+**Theme**: Custom Cloudboosta business website
