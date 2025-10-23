@@ -45,7 +45,7 @@ Components:
 "
 
 echo "🔗 Adding GitHub remote..."
-git remote add origin https://github.com/$GITHUB_USERNAME/cloudboosta-wordpress.git
+git remote add origin https://github.com/$GITHUB_USERNAME/docker-assignment.git
 
 echo "🚀 Pushing to GitHub..."
 git branch -M main
@@ -54,7 +54,7 @@ git push -u origin main
 if [ $? -eq 0 ]; then
     echo ""
     echo "✅ SUCCESS! Code pushed to GitHub"
-    echo "📋 Repository: https://github.com/$GITHUB_USERNAME/cloudboosta-wordpress"
+    echo "📋 Repository: https://github.com/$GITHUB_USERNAME/docker-assignment"
     echo ""
     echo "🎯 Next Steps:"
     echo "1. 🌐 Go to AWS Console → EC2 → Launch Instance"
