@@ -67,5 +67,5 @@ if [ $? -eq 0 ]; then
 else
     echo "❌ Push failed! Check your GitHub username and repository creation."
     echo "💡 Make sure you've created the repository on GitHub first:"
-    echo "   → Go to github.com → New Repository → Name: cloudboosta-wordpress"
+    echo "   → Go to github.com → New Repository → Name: Docker_Assignment"
 fi

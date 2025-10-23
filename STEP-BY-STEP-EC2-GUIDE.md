@@ -114,14 +114,14 @@ sleep 10
 cd /home/ubuntu
 
 # Clone your WordPress repository (REPLACE YOUR_USERNAME!)
-echo "📦 Cloning Cloudboosta WordPress repository..."
-git clone https://github.com/YOUR_USERNAME/cloudboosta-wordpress.git
+echo "📦 Cloning Docker Assignment repository..."
+git clone https://github.com/YOUR_USERNAME/Docker_Assignment.git
 
 # Set proper ownership
-chown -R ubuntu:ubuntu cloudboosta-wordpress
+chown -R ubuntu:ubuntu Docker_Assignment
 
 # Navigate to project directory
-cd cloudboosta-wordpress
+cd Docker_Assignment
 
 # Start WordPress deployment
 echo "🐳 Starting Docker containers..."
@@ -137,7 +137,7 @@ PUBLIC_IP=$(curl -s ifconfig.me)
 # Create management scripts
 cat > /home/ubuntu/start-cloudboosta.sh << 'EOF'
 #!/bin/bash
-cd /home/ubuntu/cloudboosta-wordpress
+cd /home/ubuntu/Docker_Assignment
 docker compose -f docker-compose-apache.yml up -d
 echo "✅ Cloudboosta WordPress is running!"
 echo "🌐 Website: http://$(curl -s ifconfig.me)"
@@ -147,14 +147,14 @@ EOF
 
 cat > /home/ubuntu/stop-cloudboosta.sh << 'EOF'
 #!/bin/bash
-cd /home/ubuntu/cloudboosta-wordpress
+cd /home/ubuntu/Docker_Assignment
 docker compose -f docker-compose-apache.yml down
 echo "🛑 Cloudboosta WordPress stopped"
 EOF
 
 cat > /home/ubuntu/status-cloudboosta.sh << 'EOF'
 #!/bin/bash
-cd /home/ubuntu/cloudboosta-wordpress
+cd /home/ubuntu/Docker_Assignment
 echo "📊 Container Status:"
 docker compose -f docker-compose-apache.yml ps
 echo ""
@@ -181,7 +181,7 @@ cat > /home/ubuntu/deployment-info.txt << EOF
 - WordPress Admin: admin / cloudboosta2024!
 - Database: root / (check .env file)
 
-📁 PROJECT LOCATION: /home/ubuntu/cloudboosta-wordpress
+📁 PROJECT LOCATION: /home/ubuntu/Docker_Assignment
 
 🛠️ MANAGEMENT COMMANDS:
 - ./start-cloudboosta.sh   (start services)
@@ -189,7 +189,7 @@ cat > /home/ubuntu/deployment-info.txt << EOF
 - ./status-cloudboosta.sh  (check status)
 
 📋 ASSIGNMENT SUBMISSION:
-- GitHub: https://github.com/YOUR_USERNAME/cloudboosta-wordpress
+- GitHub: https://github.com/YOUR_USERNAME/Docker_Assignment
 - Live Demo: http://$PUBLIC_IP
 - Admin Panel: http://$PUBLIC_IP/wp-admin
 
